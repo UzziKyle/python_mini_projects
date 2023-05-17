@@ -1,4 +1,4 @@
-# A program that asks for the full name of the user and then returns the letters contained in the name
+# A program that asks for a full name from the user and then returns the letters contained in the name
 from modules import Modules as md  
 
 # Input
