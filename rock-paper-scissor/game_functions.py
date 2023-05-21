@@ -47,7 +47,7 @@ def single_player() -> None:
     
     os.system('cls')
     battle_printer(player_one_choice, bot_choice)
-    sp(.5)
+    sp(1)
     print("\n{}".format(winner(player_one_choice, bot_choice)))
 
 def two_players() -> None:
