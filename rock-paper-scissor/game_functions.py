@@ -50,7 +50,6 @@ def single_player() -> None:
     sp(.5)
     print("\n{}".format(winner(player_one_choice, bot_choice)))
 
-
 def two_players() -> None:
     print("\n*Coming Soon...*")
     pass
@@ -66,8 +65,6 @@ def battle_printer(player_one = int, player_two = int) -> None:
     sp(2)
 
     print("{}\n\t{}\n(Player Two)".format(characters[player_two]["action"], characters[player_two]["name"].upper()))
-
-
 
 def winner(player_one = int, player_two = int) -> str:
     player_one
