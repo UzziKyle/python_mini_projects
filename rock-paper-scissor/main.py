@@ -1,25 +1,38 @@
-import random as rd
-from time import sleep as sp
 import os
 import game_functions as func
 
 # A program that let's you play rock, paper, & scissors
 
 game_modes = {
-    1 : func.single_player,
-    2 : func.two_players,
+    1 : {
+        "name" : "Single-player",
+        "function" : func.single_player,
+    },
+    2 : {
+        "name" : "Two-player",
+        "function" : func.two_players,
+    },
+    3 : {
+        "name" : "Quit",
+        "function" : exit,
+    }
 }
 
 def init_game():
     os.system('cls') # Clears the terminal
     print("Welcome to Rock, Paper & Scissors!\n")
-    game_mode_choice = int(input("Main Menu:\n(1) Single-player\n(2) Two-players\nEnter num of choice: ").strip())
+    main_menu()
+    game_mode_choice = int(input("Enter num of choice: ").strip())
 
-    game_modes[game_mode_choice]()
+    os.system('cls')
+    game_modes[game_mode_choice]["function"]()
 
-    print("\n*The screen will be cleared after 5 seconds...*")
-    sp(5)
+    input("\nPress Enter to return to Main Menu...")
     init_game()
 
-
+def main_menu():
+    print("Main Menu")
+    for item in game_modes.keys():
+        print("({}) {}".format(item, game_modes[item]["name"]))
+        
 init_game()
