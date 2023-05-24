@@ -2,10 +2,11 @@ import random as rd
 from time import sleep as sp
 import os
 
+
 characters = {
     1 : {
         "name" : "Rock",
-        "action" : """
+        "move" : """
     _______
 ---'   ____)
     (_____)
@@ -16,7 +17,7 @@ characters = {
         },
     2 : {
         "name" : "Paper",
-        "action" : """
+        "move" : """
      _______
 ---'    ____)____
            ______)
@@ -27,7 +28,7 @@ characters = {
     },
     3 : {
         "name" : "Scissors",
-        "action" : """
+        "move" : """
     _______
 ---'   ____)____
           ______)
@@ -38,35 +39,44 @@ characters = {
     },
 }
 
+
 def single_player() -> None:
     print("Single Player Mode\n")
     for character in characters:
         print("({}) {}". format(character, characters[character]["name"]))
-    player_one_choice = int(input("Choose your action: ").strip())
+    player_one_choice = int(input("Choose your move: ").strip())
     bot_choice = rd.choice(range(1,4))
     
     os.system('cls')
     battle_printer(player_one_choice, bot_choice)
     sp(1)
-    print("\n{}".format(winner(player_one_choice, bot_choice)))
+    
+    result = battle_result(player_one_choice, bot_choice)
+    print("\n{}".format(result))
+
+    if result == "You Win!":
+        add_score()
+
 
 def two_players() -> None:
     print("\n*Coming Soon...*")
     pass
 
+
 def battle_printer(player_one = int, player_two = int) -> None:
     print("The Battle:")
     sp(.5)
 
-    print("\n(Player One)\n\t{}{}".format(characters[player_one]["name"].upper(), characters[player_one]["action"]))
+    print("\n(Player One)\n\t{}{}".format(characters[player_one]["name"].upper(), characters[player_one]["move"]))
     sp(.5)
 
     print("\tVS.")
     sp(2)
 
-    print("{}\n\t{}\n(Player Two)".format(characters[player_two]["action"], characters[player_two]["name"].upper()))
+    print("{}\n\t{}\n(Player Two)".format(characters[player_two]["move"], characters[player_two]["name"].upper()))
 
-def winner(player_one = int, player_two = int) -> str:
+
+def battle_result(player_one = int, player_two = int) -> str:
     player_one
     player_two
 
@@ -78,3 +88,25 @@ def winner(player_one = int, player_two = int) -> str:
     
     else:
         return "You Lose!"
+    
+
+def add_score() -> None:
+    previous_score = ""
+
+    record = open("record.txt", "r")
+    for char in record.read():
+        if char in "1234567890":
+            previous_score += char
+    record.close()
+
+    new_score = int(previous_score) + 1
+
+    record = open("record.txt", "w")
+    record.write("Score = {}".format(new_score))
+    record.close()
+
+
+def view_score():
+    record = open("record.txt", "r")
+    print(record.read())
+    record.close()
