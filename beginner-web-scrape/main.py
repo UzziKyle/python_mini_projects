@@ -17,7 +17,9 @@ r_html = r.text
 
 soup = bs(r_html, features='lxml')
 
-article_titles = soup.find_all('h3', class_='entry-title')
+article_titles = set(soup.find_all('h3', class_='entry-title'))
+
+print(article_titles)
 
 print("Here is a list of articles on the Palawan News homepage:")
 
