@@ -11,20 +11,21 @@ from bs4 import BeautifulSoup as bs
 
 url = "https://palawan-news.com/"
 
-r = requests.get(url)
+page = requests.get(url)
 
-r_html = r.text
+page_html = page.text
 
-soup = bs(r_html, features='lxml')
+soup = bs(page_html, features='lxml')
 
 article_titles = set(soup.find_all('h3', class_='entry-title'))
 
-print(article_titles)
 
 print("Here is a list of articles on the Palawan News homepage:")
 
 num = 1
-for title in article_titles:
-    link = title.find('a').get('href')
-    print("{}.\t{}\nLink:\t{}\n".format(num, title.text, link))
+raw_article_titles = [[title.text, title.find('a').get('href')] for title in article_titles]
+sorted_article_titles = sorted(raw_article_titles)
+
+for title in sorted_article_titles:
+    print("{}.\t{}\nLink:\t{}\n".format(num, title[0], title[1]))
     num += 1
