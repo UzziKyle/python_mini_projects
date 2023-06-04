@@ -1,8 +1,8 @@
 # A program that prints a list of articles found on the homepage of Palawan News and their respective links
 
 # Putangina, ang sakit sa mata ng documentation ng BeautifulSoup ta's sumasabay pa kalutangan ko  
-# Try viewing this "https://www.crummy.com/software/BeautifulSoup/bs4/doc/" 
-# Namahinga na lang sana ako para hindi ganitong ka-inefficient 
+# Try viewing this, "https://www.crummy.com/software/BeautifulSoup/bs4/doc/" 
+# Nagpahinga na lang sana ako para hindi ganitong ka-inefficient 
 # Took me more than two hours. It's better than nothing tho
 
 
@@ -21,7 +21,7 @@ raw_article_titles = soup.find_all('h3', class_='entry-title') # Gets the necess
 
 filtered_article_titles = sorted([[title.text, title.find('a').get('href')]for title in set(raw_article_titles)]) # Removes duplicates and sorts titles alphanumerically
 
-article_titles = [{'title': title, 'url': url} for title, url in filtered_article_titles] # Turned into a dictionary for easy data analysis
+article_titles = [{'title': title, 'url': url} for title, url in filtered_article_titles] # Turns into a dictionary for easy data analysis
 
 print("These are the articles on the Palawan News homepage:")
 num = 1
