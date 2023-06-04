@@ -3,7 +3,7 @@
 # Putangina, ang sakit sa mata ng documentation ng BeautifulSoup ta's sumasabay pa kalutangan ko  
 # Try viewing this "https://www.crummy.com/software/BeautifulSoup/bs4/doc/" 
 # Namahinga na lang sana ako para hindi ganitong ka-inefficient 
-# Took me more than an hour. It's better than nothing tho
+# Took me more than two hours. It's better than nothing tho
 
 
 import requests
@@ -17,15 +17,14 @@ page_html = page.text
 
 soup = bs(page_html, features='lxml')
 
-article_titles = set(soup.find_all('h3', class_='entry-title'))
+raw_article_titles = soup.find_all('h3', class_='entry-title') # Gets the necessary raw data from the webpage
 
+filtered_article_titles = sorted([[title.text, title.find('a').get('href')]for title in set(raw_article_titles)]) # Removes duplicates and sorts titles alphanumerically
 
-print("Here is a list of articles on the Palawan News homepage:")
+article_titles = [{'title': title, 'url': url} for title, url in filtered_article_titles] # Turned into a dictionary for easy data analysis
 
+print("These are the articles on the Palawan News homepage:")
 num = 1
-raw_article_titles = [[title.text, title.find('a').get('href')] for title in article_titles]
-sorted_article_titles = sorted(raw_article_titles)
-
-for title in sorted_article_titles:
-    print("{}.\t{}\nLink:\t{}\n".format(num, title[0], title[1]))
+for title in article_titles:
+    print("{}.\t{}\nLink:\t{}\n".format(num, title["title"], title["url"]))
     num += 1
