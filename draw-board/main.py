@@ -1,32 +1,32 @@
-# A mini program that draws a board
+# A mini program that either draws a board or return its matrix
 from os import system as sys
 
 class Board:
-    def __init__(self, width, height) -> None:
+    def __init__(self, width=1, height=1) -> None:
         self.width = width
         self.height = height
 
     def draw_self(self) -> None:
-        rows = [x+1 for x in range(self.width)]
+        rows = range(self.height)
+        columns = self.width
 
-        for columns in rows:
-            boxes = [x+1 for x in range(self.height)]
+        for column in rows:
+            print(" ----" * columns)
+            print("|    " * columns, end="|\n")
+        print(" ----" * columns)
 
-            for top in boxes:
-                if top == boxes[-1]:
-                    print(' ----')
-                else:
-                    print(' ----', end="")
+    def matrix(self) -> None:
+        rows = range(self.height)
+        columns = range(self.width)
+        matrix = []
 
-            for side in boxes:
-                if side == boxes[-1]:
-                    print('|    ', end="|\n")
-                else:
-                    print('|    ', end="")
+        for row in rows:
+            new_row = []
+            for column in columns:
+                new_row.append('')
+            matrix.append(new_row)
 
-            if columns == rows[-1]:
-                for bottom in boxes:
-                    print(' ----', end="")
+        print(matrix)
 
 domino = Board(12,12)
 chess = Board(8,8)
@@ -50,19 +50,58 @@ board_list = [
     },
     ]
 
+board_funcs = ["Draw Box", "Matrix", "Quit"]
+
+# Prints options and returns the chosen 
+def prompter() -> int:
+    for num, board in enumerate(board_list):
+        print("{}. {}".format(num+1, board["name"]))
+    num_input = int(input("Enter number: ").strip()) - 1
+
+    return num_input
+
+# Creates a new custom board
+def custom_board(list_index) -> None:
+        input_width = int(input("Enter width: ").strip())
+        input_height = int(input("Enter height: ").strip())
+        custom = Board(input_width,input_height)
+
+        board_list[list_index]["object"] = custom
+
 sys('cls') # Clears the screen
 
-print("Hi! What board do you want me to draw?")
-for num, board in enumerate(board_list):
-    print("{}. {}".format(num+1, board["name"]))
-num_input = int(input("Enter number: ").strip()) - 1
+# Beginning of the program
+print("BOARDS\nMain Menu:")
+for num, item in enumerate(board_funcs):
+    print("{}. {}".format(num+1,item))
+menu_input = int(input("Enter number: ").strip())
 
-if num_input == len(board_list) - 1:
-    input_width = int(input("Enter width: ").strip())
-    input_height = int(input("Enter height: ").strip())
-    custom = Board(input_width,input_height)
+sys('cls')
 
-    board_list[num_input]["object"] = custom
+if menu_input == 1: # Draw Box
+    print("Hi! What board do you want me to draw?")
+    num_input = prompter()
 
-# Final Output
-board_list[num_input]["object"].draw_self()
+    if num_input == len(board_list) - 1:
+        custom_board(num_input)
+
+    # Final Output
+    board_list[num_input]["object"].draw_self()
+
+elif menu_input == 2: # Matrix
+    print("Hi! What matrix do you want?")
+    num_input = prompter()
+
+    if num_input == len(board_list) - 1:
+        custom_board(num_input)
+
+    # Final Output
+    board_list[num_input]["object"].matrix()
+
+elif menu_input == 3: # Quit
+    print("Bye.") 
+    quit()
+
+else: 
+    print("Stoopid!")
+    quit()
