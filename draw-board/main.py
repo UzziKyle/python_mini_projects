@@ -50,9 +50,9 @@ board_list = [
     },
     ]
 
-board_funcs = ["Draw Box", "Matrix", "Quit"]
+functions = ["Draw Box", "Matrix", "Quit"]
 
-# Prints options and returns the chosen 
+# prints options and returns the chosen 
 def prompter() -> int:
     for num, board in enumerate(board_list):
         print("{}. {}".format(num+1, board["name"]))
@@ -70,35 +70,29 @@ def custom_board(list_index) -> None:
 
 sys('cls') # Clears the screen
 
-# Beginning of the program
 print("BOARDS\nMain Menu:")
-for num, item in enumerate(board_funcs):
+for num, item in enumerate(functions):
     print("{}. {}".format(num+1,item))
 menu_input = int(input("Enter number: ").strip())
 
 sys('cls')
 
-if menu_input == 1: # Draw Box
-    print("Hi! What board do you want me to draw?")
+# First two options
+if menu_input == 1 or 2:
+    print("Hi! What board?")
     num_input = prompter()
 
     if num_input == len(board_list) - 1:
         custom_board(num_input)
 
-    # Final Output
-    board_list[num_input]["object"].draw_self()
+    if menu_input == 1:
+        board_list[num_input]["object"].draw_self() # Draws Board
 
-elif menu_input == 2: # Matrix
-    print("Hi! What matrix do you want?")
-    num_input = prompter()
+    else:
+        board_list[num_input]["object"].matrix() # Returns Matrix
 
-    if num_input == len(board_list) - 1:
-        custom_board(num_input)
-
-    # Final Output
-    board_list[num_input]["object"].matrix()
-
-elif menu_input == 3: # Quit
+# Quit
+elif menu_input == 3:
     print("Bye.") 
     quit()
 
