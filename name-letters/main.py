@@ -1,22 +1,14 @@
-# A program that asks for a full name from the user and then returns the letters contained in the name
-from modules import Modules as md  
+# A program that asks for the full name of the user and then returns the letters contained in the name
+import name_module as nm
 
 # Input
-first_name = input("Enter your first name: ").strip().lower()
-middle_name = input("Enter your middle name: ").strip().lower()
-last_name = input("Enter your last name: ").strip().lower()
+first_name = input("Enter your first name: ").strip()
+middle_name = input("Enter your middle name: ").strip()
+last_name = input("Enter your last name: ").strip()
 
-full_name = [first_name, middle_name, last_name]
+name = nm.NameInfo(first_name, middle_name, last_name)
 
 # Process and Output
-sorted_name_letters = sorted(md.list_to_set(md.get_letters(full_name)))
+print(name.get_fullname())
 
-letters_list = []
-for items in sorted_name_letters:
-    letters_list.append(items.capitalize())
-    if items not in sorted_name_letters[-1]:
-        letters_list.append(", ")
-
-letters = "".join(letters_list)
-
-print("\nYour name consists of letters {}.".format(letters))
+print("\nYour name consists of letters {}.".format(name.get_all_letters()))
