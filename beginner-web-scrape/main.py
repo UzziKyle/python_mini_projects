@@ -1,6 +1,6 @@
 # A program that prints a list of articles found on the homepage of Palawan News and their respective links
 
-# Putangina, ang sakit sa mata ng documentation ng BeautifulSoup ta's sumabay pa kalutangan ko  
+# P********, ang sakit sa mata ng documentation ng BeautifulSoup ta's sumabay pa kalutangan ko  
 # Try viewing this, "https://www.crummy.com/software/BeautifulSoup/bs4/doc/" 
 # Nagpahinga na lang sana ako para hindi ganitong ka-inefficient 
 # Took me more than two hours. It's better than nothing tho
