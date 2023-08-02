@@ -22,6 +22,7 @@ btn_decrease = tk.Button(frm_main, text='-', font=('Arial, 12'), width=3, comman
 btn_increase = tk.Button(frm_main, text='+', font=('Arial, 12'), width=3, command=increase_value)
 lbl_value = tk.Label(frm_main, text='0', font=('Arial, 16'), width=3)
 
+# Widget Positions
 frm_main.grid(row=0, sticky='nsew', padx=20, pady=20)
 btn_decrease.grid(row=0, column=0, padx=15, ipadx=5, ipady=5)
 btn_increase.grid(row=0, column=2, padx=15, ipadx=5, ipady=5)
