@@ -35,7 +35,7 @@ def save_file() -> None:
     if not filepath: return
 
     with open(filepath, mode='w', encoding='utf-8') as output_file:
-        text = txt_edit.get(0, tk.END)
+        text = txt_edit.get('1.0', tk.END)
         output_file.write(text)
     window.title('Uzzi\'s Text Editor - {filepath}')
 
