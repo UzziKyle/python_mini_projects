@@ -18,7 +18,7 @@ class App(tk.Tk):
         ent_temp_value = tk.Entry(frm_entry, width=16)
         ent_temp_value.insert(0, '0')
         lbl_temp = tk.Label(frm_entry, text='\N{DEGREE FAHRENHEIT}', font=font)
-        btn_convert = tk.Button(self, text='\N{RIGHTWARDS BLACK ARROW}', font=font, command=lambda: fahrenheit_to_celsius())
+        btn_convert = tk.Button(self, text='\N{RIGHTWARDS BLACK ARROW}', font=font, command=lambda: self.fahrenheit_to_celsius(ent_temp_value, lbl_result))
         lbl_result = tk.Label(self, text='-17.78\N{DEGREE CELSIUS}', font=font, width=8)
 
         # Widgets Position
@@ -28,11 +28,11 @@ class App(tk.Tk):
         btn_convert.grid(row=0, column=1, padx=padding)
         lbl_result.grid(row=0, column=2, padx=padding)
 
-        # Functions
-        def fahrenheit_to_celsius() -> None:
-            fahrenheit = float(ent_temp_value.get())
-            celsius = round(((fahrenheit - 32) * 5/9), 2)
-            lbl_result['text'] = f'{celsius}\N{DEGREE CELSIUS}'
+    # Functions
+    def fahrenheit_to_celsius(self, ent_temp_value = str, lbl_result = str) -> None:
+        fahrenheit = float(ent_temp_value.get())
+        celsius = round(((fahrenheit - 32) * 5/9), 2)
+        lbl_result['text'] = f'{celsius}\N{DEGREE CELSIUS}'
 
 if __name__ == '__main__':
     app = App()
