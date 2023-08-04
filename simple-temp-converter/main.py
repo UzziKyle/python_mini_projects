@@ -5,7 +5,7 @@ import tkinter as tk
 
 # Styling Variables
 padding = 8
-font = ('Helvetica', '12')
+font = ('Helvetica', 12)
 
 class App(tk.Tk):
     def __init__(self) -> None:
