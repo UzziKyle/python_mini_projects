@@ -21,7 +21,7 @@ class GuessingGame:
         
         return answer 
     
-    def validate_answer(self, answer: str) -> (bool, int):
+    def validate_answer(self, answer: int) -> (bool, int):
         try:
             num = int(answer)
             

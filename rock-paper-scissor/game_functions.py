@@ -56,6 +56,8 @@ def single_player() -> None:
 
     if result == "You Win!":
         add_score()
+    
+    print("\n{}".format(score()))
 
 
 def two_players() -> None:
@@ -99,7 +101,11 @@ def add_score() -> None:
             previous_score += char
     record.close()
 
-    new_score = int(previous_score) + 1
+    if previous_score in "1234567890":
+        new_score = 1
+
+    else:
+        new_score = int(previous_score) + 1
 
     record = open("record.txt", "w")
     record.write("Score = {}".format(new_score))
@@ -107,6 +113,12 @@ def add_score() -> None:
 
 
 def view_score():
+    print(score)
+
+
+def score() -> str:
     record = open("record.txt", "r")
-    print(record.read())
+    prompt = "" + record.read()
     record.close()
+
+    return prompt

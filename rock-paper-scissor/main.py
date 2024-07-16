@@ -1,4 +1,4 @@
-# A program that lets you play rock, paper, & scissors
+# A program that let's you play rock, paper, & scissors
 import os
 import sys
 import game_functions as func
